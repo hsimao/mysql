@@ -34,3 +34,12 @@ LIMIT 1;
 -- 所有照片張數 / 所有用戶張數
 SELECT
   ((SELECT COUNT(*) FROM photos) / (SELECT COUNT(*) FROM users)) AS avg;
+
+-- 查詢出前五個最多人使用的標籤
+SELECT tag_name, COUNT(*) as total
+FROM tags
+JOIN photo_tags
+  ON tags.id = photo_tags.tag_id
+GROUP BY tags.id
+ORDER BY total DESC
+LIMIT 5;
