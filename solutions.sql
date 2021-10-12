@@ -31,3 +31,6 @@ LIMIT 1;
 
 
 -- 查出每位用戶平均發布幾張照片
+-- 所有照片張數 / 所有用戶張數
+SELECT
+  ((SELECT COUNT(*) FROM photos) / (SELECT COUNT(*) FROM users)) AS avg;
