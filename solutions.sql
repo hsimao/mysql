@@ -43,3 +43,12 @@ JOIN photo_tags
 GROUP BY tags.id
 ORDER BY total DESC
 LIMIT 5;
+
+-- 找出哪位用戶每張照片都有點過 like
+-- 使用 HAVING 來進階搜尋, 原本 WHERE 只能用原始 columns,
+SELECT username, COUNT(*) AS num_likes
+FROM users
+JOIN likes
+  ON users.id = likes.user_id
+GROUP BY users.id
+HAVING num_likes = (SELECT COUNT(*) FROM photos);
