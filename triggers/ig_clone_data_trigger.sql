@@ -49,6 +49,16 @@ CREATE TABLE follows (
     PRIMARY KEY(follower_id, follow_who_id)
 );
 
+CREATE TABLE unfollows (
+    follower_id INTEGER NOT NULL,
+    follow_who_id INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    FOREIGN KEY(follower_id) REFERENCES users(id),
+    FOREIGN KEY(follow_who_id) REFERENCES users(id),
+    PRIMARY KEY(follower_id, follow_who_id)
+);
+
+
 CREATE TABLE tags (
   id INTEGER AUTO_INCREMENT PRIMARY KEY,
   tag_name VARCHAR(255) UNIQUE,
